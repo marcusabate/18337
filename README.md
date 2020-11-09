@@ -229,6 +229,7 @@ Homework 3: Training neural ordinary differential equations (with GPUs)
 # Homeworks
 
 - [Homework 1: Parallelized Dynamics. Due October 1st](https://mitmath.github.io/18337/hw1/hw1)
+- [Homework 2: Parameter Estimation in Dynamical Systems and Bandwidth Maximization. Due November 5th](https://mitmath.github.io/18337/hw2/hw2)
 
 # Lecture Summaries and Handouts
 
@@ -393,3 +394,77 @@ determiner as to how we need to think about parallelism. Instead, the determinin
 factor is the parallel programming model, where just a handful of models, like
 task-based parallelism or SPMD models, are seen across all of the different
 hardware abstractions.
+
+## Lecture 7: Ordinary Differential Equations: Applications and Discretizations
+
+- [Ordinary Differential Equations 1: Applications and Solution Characteristics (Lecture)](https://youtu.be/riAbPZy9gFc)
+- [Ordinary Differential Equations 2: Discretizations and Stability (Lecture)](https://youtu.be/HMmOk9GIhsw)
+- [Ordinary Differential Equations: Applications and Discretizations (Notes)](https://mitmath.github.io/18337/lecture7/discretizing_odes.html)
+
+In this lecture we will describe ordinary differential equations, where they arise in scientific contexts, and how they are solved. We will see that understanding the properties of the numerical methods requires understanding the dynamics of the discrete system generated from the approximation to the continuous system, and thus stability of a numerical method is directly tied to the stability properties of the dynamics. This gives the idea of stiffness, which is a larger computational idea about ill-conditioned systems.
+
+## Lecture 8: Forward-Mode Automatic Differentiation
+
+- [Forward-Mode Automatic Differentiation (AD) via High Dimensional Algebras (Lecture)](https://youtu.be/zHPXGBiTM5A)
+- [Forward-Mode Automatic Differentiation (AD) via High Dimensional Algebras (Notes)](https://mitmath.github.io/18337/lecture8/automatic_differentiation.html)
+
+As we will soon see, the ability to calculate derivatives underpins a lot of problems in both scientific computing and machine learning. We will specifically see it show up in later lectures on solving implicit equations f(x)=0 for stiff ordinary differential equation solvers, and in fitting neural networks. The common high performance way that this is done is called automatic differentiation. This lecture introduces the methods of forward and reverse mode automatic differentiation to setup future studies uses of the technique.
+
+## Lecture 9: Solving Stiff Ordinary Differential Equations
+
+#### Lecture Notes
+
+- [Solving Stiff Ordinary Differential Equations (Lecture)](https://youtu.be/bY2VCoxMuo8)
+- [Solving Stiff Ordinary Differential Equations (Notes)](https://mitmath.github.io/18337/lecture9/stiff_odes)
+
+#### Additional Readings on Convergence of Newton's Method
+
+- [Newton's Method](https://link.springer.com/chapter/10.1007%2F978-1-4612-0701-6_8)
+- [Relaxed Newton's Method](https://pdfs.semanticscholar.org/1844/34b366f337972aa94a601fabd251d0baf62f.pdf)
+- [Convergence of Pure and Relaxed Newton Methods](https://www.sciencedirect.com/science/article/pii/S00243795130067820)
+- [Smale's Alpha Theory for Newton Convergence](http://cswiercz.info/2016/01/20/narc-talk.html)
+- [alphaCertified: certifying solutions to polynomial systems](https://arxiv.org/abs/1011.1091)
+- [Improved convergence theorem for Newton](https://arxiv.org/ftp/arxiv/papers/1503/1503.03543.pdf)
+- [Generalizations of Newton's Method](https://www.math.uwaterloo.ca/~wgilbert/Research/GilbertFractals.pdf)
+
+Solving stiff ordinary differential equations, especially those which arise
+from partial differential equations, are the common bottleneck of scientific
+computing. The largest-scale scientific computing models are generally using
+heavy compute power in order to tackle some implicitly timestepped PDE solve!
+Thus we will take a deep dive into how the different methods which are combined
+to create a stiff ordinary differential equation solver, looking at different
+aspects of Jacobian computations and linear solving and the effects that they
+have.
+
+https://youtu.be/XQAe4pEZ6L4
+
+## Lecture 10: Basic Parameter Estimation, Reverse-Mode AD, and Inverse Problems
+
+- [Basic Parameter Estimation, Reverse-Mode AD, and Inverse Problems (Lecture)](https://youtu.be/XQAe4pEZ6L4)
+- [Basic Parameter Estimation, Reverse-Mode AD, and Inverse Problems (Notes)](https://mitmath.github.io/18337/lecture10/estimation_identification)
+
+Now that we have models, how do you fit the models to data? This lecture goes through the basic shooting method for parameter estimation, showcases how it's equivalent to training neural networks, and gives an in-depth discussion of how reverse-mode automatic differentiation is utilized in the training process for the efficient calculation of gradients.
+
+## Lecture 11: Coming Soon
+
+## Lecture 12.1: MPI for Distributed Computing
+
+Guest Lecturer: Lauren E. Milechin, MIT Lincoln Lab and the MIT Supercloud
+Guest Writer: Jeremy Kepner, MIT Lincoln Lab and the MIT Supercloud
+
+- [Introduction to MPI.jl (Lecture)](https://www.youtube.com/watch?v=LCIJj0czofo)
+- [Introduction to MPI.jl (Notes: PDF)](https://github.com/mitmath/18337/blob/master/lecture12/MPI.jl.pdf)
+
+In this lecture we went over the basics of MPI (Message Passing Interface) for distributed computing and examples on how to use MPI.jl to write parallel programs that work efficiently over multiple computers (or "compute nodes"). The MPI programming model and the job scripts required for using MPI on the MIT Supercloud HPC were demonstrated.
+
+## Lecture 12.2: Mathematics of Machine Learning and High Performance Computing
+
+Guest Lecturer: Jeremy Kepner, MIT Lincoln Lab and the MIT Supercloud
+
+- [Mathematics of Big Data and Machine Learning (Lecture)](https://youtu.be/0sKPkJME2Jw?t=26)
+- [Mathematical Foundations of the GraphBLAS and Big Data (Lecture)](https://youtu.be/gZSNp6XbOK8?t=17)
+- [AI Data Architecture (Lecture)](https://youtu.be/RpPlj2HnuWg?t=1412)
+- [Performance Metrics and Software Architecture (Book Chapter)](https://github.com/mitmath/18337/blob/master/lecture12/PerformanceMetricsSoftwareArchitecture.pdf)
+- [Optimizing Xeon Phi for Interactive Data Analysis (Paper)](https://github.com/mitmath/18337/blob/master/lecture12/OptimizingXeonPhi-PID6086383.pdf)
+
+In this lecture we went over the mathematics behind big data, machine learning, and high performance computing. Pieces like Amdahl's law for describing maximal parallel compute efficiency were described and demonstrated to showcase some hard ceiling on the capabilities of parallel computing, and these laws were described in the context of big data computations in order to assess the viability of distributed computing within that domain's context.
